@@ -6,7 +6,7 @@
 // The signature of the tested method
 // void split(std::string s, char delim, std::vector<std::string>& v, bool strip_spaces = true);
 
-UT_TEST_SUITE(Suites) {
+UT_TEST_SUITE(TestSuite) {
 
    // Declare here variables
    std::string test_string;
