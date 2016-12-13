@@ -8,52 +8,84 @@ Unit testing a piece of code is as simple as performing the following steps:
 // Include the UnitTest library header
 #include "UnitTest.hpp"
 
-// This is supposed to be the unit under test
-unsigned fact(unsigned n){ return (n==0 || n==1) ? 1 : n*fact(n-1); }
+#include <limits>
 
-// This is how you declare a suite of test cases
+// This are supposed to be the units under test
+unsigned fact(unsigned n){ return (n == 0 || n == 1) ? 1 : n*fact(n - 1); }
+unsigned fib(unsigned n){ return (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); }
+
+// This is how you define a suite of test cases
 UT_TEST_SUITE(test_fact) {
 
-  // Here you can define variables that have global scope in the suite;
-  unsigned result;
-  
-  // Here you can define code that will be executed before each test case
-  UT_TEST_CASE_INIT() {
-    // Inside here you can use variables with suite scope and wider
-  }
-  
-  // Here you can define code that will be executed after each test case
-  UT_TEST_CASE_CLEANUP() {
-    // Inside here you can use variables with suite scope and wider
-  }
-  
-  // Here is how you define test cases
-  //  test cases must have a name
-  //  test cases can have tags which enables you to select at runtime which test cases you want to execute
-  UT_TEST_CASE(name, tag1, tag2){
-    
-  }
-  
-  // Note: following the name of test cases which does not have tags must be always a comma
-  UT_TEST_CASE(another_name, ){
-  
-  }
-  
-  // After having define all test cases they must be enabled
-  UT_ENABLE_TEST_CASES(
-    name, 
-    another_name
-  );
+	// Here you can define variables that have global scope in the suite;
+	unsigned result;
+
+	UT_TEST_CASE_INIT() {
+		result = 0; // Here you can access variables at suite scope
+	};
+
+	UT_TEST_CASE_CLEANUP() {
+		result = std::numeric_limits<unsigned>::max(); // Here you can access variables at suite scope
+	};
+
+  // Each case must have a name (a valid identifier) and zero or more tags: notes that after the name a comma is always required!
+	UT_TEST_CASE(fact_of_zero_or_one_is_one, base){
+		AssertEquals(result, 0);
+		AssertEquals(fact(0), 1);
+		AssertEquals(fact(1), 1);
+	};
+
+	UT_TEST_CASE(fact_of_five_is_correct, compute){
+		AssertFalse(result != 0);
+		AssertEquals(fact(5), 120);
+	};
+
+  // Test cases must be explicitly enabled
+	UT_ENABLE_TEST_CASES(
+		fact_of_zero_or_one_is_one,
+		fact_of_five_is_correct
+	);
 }
 
-int main(int argc, char** argv, char** envp){
+UT_TEST_SUITE(test_fib){
+	unsigned result;
 
-  // test suite must be registered before execution
-  UT_REGISTER_TEST_SUITE(test_fact);
+	UT_TEST_CASE_INIT() {
+		result = 0;
+	};
 
-  // this execute all the enabled tests
-  UnitTest::TestManager::Run(argc, argv);
-  
-  return 0;
+	UT_TEST_CASE_CLEANUP() {
+		result = std::numeric_limits<unsigned>::max();
+	};
+
+	UT_TEST_CASE(fib_of_one_gives_one, base){
+		AssertEquals(1, fib(1));
+	};
+
+	UT_TEST_CASE(fib_of_zero_gives_one, base){
+		AssertTrue(fib(0) == 1);
+	};
+
+	UT_TEST_CASE(fib_of_five_is_correct, compute){
+		AssertEquals(fib(5), 8);
+	};
+
+	UT_ENABLE_TEST_CASES(
+		fib_of_one_gives_one,
+		fib_of_zero_gives_one,
+		fib_of_five_is_correct
+	);
+}
+
+int main(int argc, char **argv, char **envp) {
+
+   UT_REGISTER_TEST_SUITE(test_fact);
+   UT_REGISTER_TEST_SUITE(test_fib);
+
+   // You can execute only one or more suite by giving --suites <suite 1> [suite 2] [suite n] in the command line
+   // You can execute only one or more test cases tagged by giving --tags <tag 1> [tag 2] [tag n] in the command line
+   UnitTest::TestManager::run(argc, argv);
+
+   return 0;
 }
 ```
