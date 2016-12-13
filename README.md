@@ -1,8 +1,8 @@
 # UnitTest
 A C++ (std11+) library to perform unit testing.
 
-## How to?
-Unit testing a piece of code is as simple as performing the following steps:
+## Simple usage?
+Unit testing a piece of C++ (std11+) code is as simple as follows:
 
 ```c++
 // Include the UnitTest library header
