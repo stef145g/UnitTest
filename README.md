@@ -30,6 +30,9 @@ UT_TEST_SUITE(test_fact) {
 
   // Each case must have a name (a valid identifier) and zero or more tags: notes that after the name a comma is always required!
 	UT_TEST_CASE(fact_of_zero_or_one_is_one, base){
+	
+		// Inside test cases you should use AssertXXX or RequireXXX macros to test your code
+		
 		AssertEquals(result, 0);
 		AssertEquals(fact(0), 1);
 		AssertEquals(fact(1), 1);
