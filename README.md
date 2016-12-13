@@ -1,7 +1,7 @@
 # UnitTest
 A C++ (std11+) library to perform unit testing.
 
-## Simple usage?
+## Simple usage
 Unit testing a piece of C++ (std11+) code is as simple as follows:
 
 ```c++
