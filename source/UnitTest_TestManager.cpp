@@ -205,6 +205,8 @@ void UnitTest::TestManager::write_suite_header(const char *suite_name) {
 
 	Console::WriteColor(LINE, COLOR(YELLOW));
 	Console::Write("\r\n");
+	
+	ss.str("");
 
 	return;
 }
