@@ -56,8 +56,34 @@ UT_TEST_SUITE(suite_name){
 ```
 Note that **the definition of each test case scope must ends with a semicolon**, also note that as previously said **test cases that does not have tags must have a colon at the end of their names**. 
 
-Test cases can be enabled for execution. Particularly test cases that you want to be executed must be explicitly enabled. The order in which they are enabled will be the same order in which they will be executed, this will affect the runtime when you use Requires and test cases depend on each other.
+Test cases can be enabled for execution. Specifically test cases that you want to be executed must be explicitly enabled. The order in which they are enabled will be the same order in which they will be executed, this will affect the runtime when you use Requires and/or test cases depend on each other. Here is how to enable test cases:
+```c++
+#include "UnitTest.hpp"
 
+// This is how you define a UnitTest test suite dubbed suite_name
+UT_TEST_SUITE(suite_name){
+
+	// Here you can define variables visible at suite scope
+	int iResult = 0;
+	float fResult = 0.0f;
+	double dResult = 0.0;
+	
+	UT_TEST_CASE(test_case_0,){
+		// Here you actually unit test your code
+	};
+	
+	UT_TEST_CASE(test_case_1, tag0, tag1, tagn){
+		// Here you actually unit test your code
+	};
+	
+	// Test cases must be explicitly enabled (order of execution will be the same)
+	UT_ENABLE_TEST_CASES(
+		test_case_0,
+		test_case_1
+	);
+}
+
+```
 
 
 ## Simple usage
