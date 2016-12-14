@@ -84,7 +84,7 @@ UT_TEST_SUITE(suite_name){
 }
 
 ```
-Some times it's required to execute pieces of code before each test case and/or at the end, in those cases UnitTest allows you to do so using UT_TEST_CASE_INIT() and UT_TEST_CASE_CLEANUP() as in the following code:
+Some times it's required to execute pieces of code before each test case and/or at the end, in those cases UnitTest allows you to do so using **UT_TEST_CASE_INIT()** and **UT_TEST_CASE_CLEANUP()** as in the following code:
 ```c++
 #include "UnitTest.hpp"
 
@@ -120,9 +120,9 @@ UT_TEST_SUITE(suite_name){
 }
 
 ```
-Note that both UT_TEST_CASE_INIT and UT_TEST_CASE_CLEANUP definitions must end with a semicolon. Moreover they does not have nor names nor tags: that is when they are defined they will always be executed for each test case! 
+Note that both **UT_TEST_CASE_INIT()** and **UT_TEST_CASE_CLEANUP()** definitions must end with a semicolon. Moreover they does not have names nor tags. When they are defined they will always be executed for each test case! 
 
-Sometimes actions must be performed before the execution of all test cases and/or after their execution, using UnitTest you should perform those actions respectively before and after the UT_ENABLE_TEST_CASES call. For the sake of readability we advise to put pre-actions after suite scope variables declaration and post-actions after the UT_ENABLE_TEST_CASES() call as in the following code:
+Sometimes actions must be performed before the execution of all test cases and/or after their execution, using UnitTest you should perform those actions respectively before and after the **UT_ENABLE_TEST_CASES()** call. For the sake of readability we advise to put pre-actions after suite scope variables declaration and post-actions after the **UT_ENABLE_TEST_CASES()** call as in the following code:
 ```c++
 #include "UnitTest.hpp"
 
