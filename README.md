@@ -54,6 +54,9 @@ UT_TEST_SUITE(suite_name){
 }
 
 ```
+Note that **the definition of each test case scope must ends with a semicolon**, also note that as previously said **test cases that does not have tags must have a colon at the end of their names**. 
+
+Test cases can be enabled for execution. Particularly test cases that you want to be executed must be explicitly enabled. The order in which they are enabled will be the same order in which they will be executed, this will affect the runtime when you use Requires and test cases depend on each other.
 
 
 
