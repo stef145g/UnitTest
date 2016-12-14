@@ -31,6 +31,30 @@ UT_TEST_SUITE(suite_name){
 }
 
 ```
+Test cases must be defined inside the scope of a test suite; each test case will have a name that, in this case also, must be a valid c++ identifier, and zero or more 'tags'. Tags are strings not delimited by double or single quotes and without spaces that allows you to classify the test case. Tags must be separated by commas. Using tags you can control at runtime which test cases of which test suites will be executed. When no tags are given for a test case a single comma after the test name must be used. As mentioned earlier variables defined at suite scope can be accessed inside test cases. Here is how you define test cases:
+```c++
+#include "UnitTest.hpp"
+
+// This is how you define a UnitTest test suite dubbed suite_name
+UT_TEST_SUITE(suite_name){
+
+	// Here you can define variables visible at suite scope
+	int iResult = 0;
+	float fResult = 0.0f;
+	double dResult = 0.0;
+	
+	UT_TEST_CASE(test_case_0,){
+		// Here you actually unit test your code
+	};
+	
+	UT_TEST_CASE(test_case_1, tag0, tag1, tagn){
+		// Here you actually unit test your code
+	};
+	
+}
+
+```
+
 
 
 ## Simple usage
