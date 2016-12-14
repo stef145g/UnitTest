@@ -15,7 +15,7 @@ To include UnitTest in your projects you just need to download the source code o
 ...
 ```
 
-## How do I use it?
+## What to I need to know to use it?
 In UnitTest test cases are grouped under test suites. Each test suite must have a name which must also be a valid c++ identifier (it cannot start with a number, cannot contains spaces and so on). Test suites actually creates a scope, so each variable defined in the test suite can be used in the test cases of that test suite. Here is how you define a test suite:
 ```c++
 #include "UnitTest.hpp"
@@ -185,6 +185,10 @@ int main(int argc, char** argv){
 	return 0;
 }
 
+```
+After having compiled your tests you can select which from the enabled suites to schedule for execution mentioning them after the optional command line argument *--suites*. When this optional argument is not given all registered suites will be executed. Supposing having compiled a tester called *MyTester* to enable execution of the test suites Suite1 and Suite2 we could use the following command line:
+```bash
+./MyTester --suites Suite1 Suite2
 ```
 
 ## Simple usage
