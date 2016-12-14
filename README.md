@@ -15,7 +15,7 @@ To include UnitTest in your projects you just need to download the source code o
 ...
 ```
 
-## What to I need to know to use it?
+## What do I need to know to use it?
 In UnitTest test cases are grouped under test suites. Each test suite must have a name which must also be a valid c++ identifier (it cannot start with a number, cannot contains spaces and so on). Test suites actually creates a scope, so each variable defined in the test suite can be used in the test cases of that test suite. Here is how you define a test suite:
 ```c++
 #include "UnitTest.hpp"
@@ -186,10 +186,15 @@ int main(int argc, char** argv){
 }
 
 ```
-After having compiled your tests you can select which from the enabled suites to schedule for execution mentioning them after the optional command line argument *--suites*. When this optional argument is not given all registered suites will be executed. Supposing having compiled a tester called *MyTester* to enable execution of the test suites Suite1 and Suite2 we could use the following command line:
+After having compiled your tests, you can select which, from the enabled suites, to schedule for execution mentioning them after the optional command line argument *--suites*. When this optional argument is not given all registered suites will be executed. Supposing having compiled a tester executable called *MyTester*, to enable execution of the test suites *Suite1* and *Suite2* we could use the following command line:
 ```bash
 ./MyTester --suites Suite1 Suite2
 ```
+It is also possible to select which test cases should be executed by specifying their tags after the optional command line argument *--tags*. When this optional argument is not given all test cases of all registered suites will be executed. Supposing having compiled a tester executable called *MyTester*, to enable execution of the test suites *Suite1* and *Suite2* and having in them tests tagged with *base* and *complex* tags to execute only them we could use the following command line:
+```bash
+./MyTester --suites Suite1 Suite2 --tags base complex
+```
+After having given a quick look at the Asserts and Requires macros that you can use to actually test your code, you'll have all you need to know to start using the UnitTest library.
 
 ## Simple usage
 Unit testing a piece of C++ (std11+) code is as simple as follows:
