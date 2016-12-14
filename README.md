@@ -15,6 +15,24 @@ To include UnitTest in your projects you just need to download the source code o
 ...
 ```
 
+## How do I use it?
+In UnitTest test cases are grouped under test suites. Each test suite must have a name which must also be a valid c++ identifier (it cannot start with a number, cannot contains spaces and so on). Test suites actually creates a scope, so each variable defined in the test suite can be used in the test cases of that test suite. Here is how you define a test suite:
+```c++
+#include "UnitTest.hpp"
+
+// This is how you define a UnitTest test suite dubbed suite_name
+UT_TEST_SUITE(suite_name){
+
+	// Here you can define variables visible at suite scope
+	int iResult = 0;
+	float fResult = 0.0f;
+	double dResult = 0.0;
+	
+}
+
+```
+
+
 ## Simple usage
 Unit testing a piece of C++ (std11+) code is as simple as follows:
 
