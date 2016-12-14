@@ -84,7 +84,86 @@ UT_TEST_SUITE(suite_name){
 }
 
 ```
+Some times it's required to execute pieces of code before each test case and/or at the end, in those cases UnitTest allows you to do so using UT_TEST_CASE_INIT() and UT_TEST_CASE_CLEANUP() as in the following code:
+```c++
+#include "UnitTest.hpp"
 
+// This is how you define a UnitTest test suite dubbed suite_name
+UT_TEST_SUITE(suite_name){
+
+	// Here you can define variables visible at suite scope
+	int iResult = 0;
+	float fResult = 0.0f;
+	double dResult = 0.0;
+	
+	UT_TEST_CASE_INIT(){
+		//The code inserted here will be executed before each test case execution.
+	};
+	
+	UT_TEST_CASE_CLEANUP(){
+		// The code inserted here will be executed after each test case execution.
+	};
+	
+	UT_TEST_CASE(test_case_0,){
+		// Here you actually unit test your code
+	};
+	
+	UT_TEST_CASE(test_case_1, tag0, tag1, tagn){
+		// Here you actually unit test your code
+	};
+	
+	// Test cases must be explicitly enabled (order of execution will be the same)
+	UT_ENABLE_TEST_CASES(
+		test_case_0,
+		test_case_1
+	);
+}
+
+```
+Note that both UT_TEST_CASE_INIT and UT_TEST_CASE_CLEANUP definitions must end with a semicolon. Moreover they does not have nor names nor tags: that is when they are defined they will always be executed for each test case! 
+
+Sometimes actions must be performed before the execution of all test cases and/or after their execution, using UnitTest you should perform those actions respectively before and after the UT_ENABLE_TEST_CASES call. For the sake of readability we advise to put pre-actions after suite scope variables declaration and post-actions after the UT_ENABLE_TEST_CASES() call as in the following code:
+```c++
+#include "UnitTest.hpp"
+
+// This is how you define a UnitTest test suite dubbed suite_name
+UT_TEST_SUITE(suite_name){
+
+	// Here you can define variables visible at suite scope
+	int iResult = 0;
+	float fResult = 0.0f;
+	double dResult = 0.0;
+	
+	// The code inserted here will be executed once in the given suite and before all test cases!
+	CreateDbConnection();
+	
+	UT_TEST_CASE_INIT(){
+		//The code inserted here will be executed before each test case execution.
+	};
+	
+	UT_TEST_CASE_CLEANUP(){
+		// The code inserted here will be executed after each test case execution.
+	};
+	
+	UT_TEST_CASE(test_case_0,){
+		// Here you actually unit test your code
+	};
+	
+	UT_TEST_CASE(test_case_1, tag0, tag1, tagn){
+		// Here you actually unit test your code
+	};
+	
+	// Test cases must be explicitly enabled (order of execution will be the same)
+	UT_ENABLE_TEST_CASES(
+		test_case_0,
+		test_case_1
+	);
+	
+	// The code inserted here will be executed once and after all test cases have been executed.
+	DestroyDbConnection();
+}
+
+```
 
 ## Simple usage
 Unit testing a piece of C++ (std11+) code is as simple as follows:
