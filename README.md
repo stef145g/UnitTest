@@ -5,7 +5,7 @@ A c++ (std11+) library to perform unit testing.
 Unit testing on source code allows you to give proof to your customers that your code works as expected under the conditions and constraints given. Moreover, in the software life cycle, maintenance and bug fixing often require editing to the source code. In this scenarios being able to automatically verify that the code continues to work as expected after any modification becomes very important. The **UnitTest** library is designed to be as easy as possible to use without renouncing to power and flexibility.
 
 ## How do I include it in my projects? 
-To include UnitTest in your projects you just need to download the source code of the library, put it in a folder that can be accessed by the compiler and include its header file where you want to use it:
+To include **UnitTest** in your projects you just need to download the source code of the library, put it in a folder that can be accessed by the compiler and include its header file where you want to use it:
 
 ```c++
 
