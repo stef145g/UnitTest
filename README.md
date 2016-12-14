@@ -164,6 +164,28 @@ UT_TEST_SUITE(suite_name){
 }
 
 ```
+UnitTest has its own console test runner. It uses formatted and colored text to allow you visually have insigth on tests execution. To be executed by the test runner test suites must be registered. To schedule test suites for execution and exeute them you'll need to write code like the following:
+```c++
+
+// Include the UnitTest library header
+#include "UnitTest.hpp"
+
+// Inside MyTests.hpp there are two test suites: Suite1 and Suite2
+#include "MyTests.hpp"
+
+int main(int argc, char** argv){
+
+	// Here we schedule for execution Suite1 and Suite2
+	UT_REGISTER_TEST_SUITE(Suite1);
+	UT_REGISTER_TEST_SUITE(Suite2);
+	
+	// Here we start the test runner
+	UnitTest::TestManager::run(argc, argv);
+	
+	return 0;
+}
+
+```
 
 ## Simple usage
 Unit testing a piece of C++ (std11+) code is as simple as follows:
