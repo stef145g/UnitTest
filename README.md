@@ -196,9 +196,17 @@ It is also possible to select which test cases should be executed by specifying 
 ```
 After having given a quick look at the Asserts and Requires macros that you can use to actually test your code, you'll have all you need to know to start using the UnitTest library.
 
+## Asserts 
+Inside your test cases you can use Assert macros to test values and condition. When an Assert macro fails the execution of the current test case continues until the end of the test. Here are the Asserts macros that you can use in tests and their documentation:
+
+### AssertFail(MSG)
+It allows you to manually assert a failure. MSG is the message to be displayed when the AssertFail() is executed.
+
+### AssertTrue(BOOL_EXPR)
+It asserts that BOOL_EXPR evaluates to true. BOOL_EXPR is any expression evaluable as boolean.
+
 ## A working example
 The following is a working example of UnitTest usage to test the fact() and fib() functions.
-
 ```c++
 // Include the UnitTest library header
 #include "UnitTest.hpp"
