@@ -1,5 +1,19 @@
 # UnitTest
-A C++ (std11+) library to perform unit testing.
+A c++ (std11+) library to perform unit testing.
+
+## Why do I need to use UnitTest?
+Unit testing on source code allows you to give proof to your customers that your code works as expected under the given conditions and constraints. Moreover, in the software life cycle, bug fixing and maintenance often require editing being made to the source code: being able to automatically verify that the code continues to work as expected becomes very important. The UnitTest library is designed to be as easy as possible to use without renouncing to flexibility.
+
+## How do I include it in my projects? 
+To include UnitTest in your projects you just need to download the source code of the library, put it in a folder that can be accessed by the compiler and include its header file where you want to use it:
+
+```c++
+
+// This will let you use the UnitTest library in your projects
+#include "UnitTest.hpp"
+
+...
+```
 
 ## Simple usage
 Unit testing a piece of C++ (std11+) code is as simple as follows:
