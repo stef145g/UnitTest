@@ -196,14 +196,39 @@ It is also possible to select which test cases should be executed by specifying 
 ```
 After having given a quick look at the Asserts and Requires macros that you can use to actually test your code, you'll have all you need to know to start using the UnitTest library.
 
-## Asserts 
-Inside your test cases you can use Assert macros to test values and condition. When an Assert macro fails the execution of the current test case continues until the end of the test. Here are the Asserts macros that you can use in tests and their documentation:
+## Asserts and Requires
+Inside your test cases you can use Assert and Require macros to test values and condition. When an Assert macro fails the execution of the current test case continues until the end of the test. When a Require macro fails the execution of the current test case ends immediately. Here are the Asserts and Require macros that you can use in tests and their documentation:
 
 ### AssertFail(MSG)
 It allows you to manually assert a failure. MSG is the message to be displayed when the AssertFail() is executed.
 
-### AssertTrue(BOOL_EXPR)
-It asserts that BOOL_EXPR evaluates to true. BOOL_EXPR is any expression evaluable as boolean.
+### AssertTrue(BOOL_EXPR) || RequireTrue(BOOL_EXPR)
+It asserts/requires that BOOL_EXPR evaluates to true. BOOL_EXPR is any expression evaluable as boolean.
+
+### AssertFalse(BOOL_EXPR) || RequireFalse(BOOL_EXPR)
+It asserts/requires that BOOL_EXPR evaluates to false. BOOL_EXPR is any expression evaluable as boolean.
+
+### AssertEquals(LEFT_EXPR, RIGHT_EXPR) || RequireEquals(LEFT_EXPR, RIGHT_EXPR)
+It asserts/requires that LEFT_EXPR is == to RIGHT_EXPR. LEFT_EXPR and RIGHT_EXPR are expression that evaluates to comparable values.
+
+### AssertNotEquals(LEFT_EXPR, RIGHT_EXPR) || RequireNotEquals(LEFT_EXPR, RIGHT_EXPR)
+It asserts/requires that LEFT_EXPR is != to RIGHT_EXPR. LEFT_EXPR and RIGHT_EXPR are expression that evaluates to comparable values.
+
+### AssertThrows(EXCEPTION_TYPE, EXPR) || RequireThrows(EXCEPTION_TYPE, EXPR)
+It asserts/requires that EXPR throws an exception of the given EXCEPTION_TYPE. EXCEPTION_TYPE is the type of the exception that will be thrown while EXPR is the expression that is supposed to throw the exception. 
+
+Notes that actually, the implementation isn't able to distinguish the type of standard exceptions. This is because when EXCEPTION_TYPE is std::exception having an additional catch clause for std::exception would cause a compilation error. So the implementation has two catch clauses: one for the type given and one for all other exceptions (using the ellipsis operator).
+
+### AssertNoThrows(EXPR) || RequireNoThrows(EXPR)
+It asserts/requires that the given EXPR does not throws any exception. EXPR is the expression that is supposed to not throw any exception.
+
+Notes that actually, the implementation isn't able to distinguish the type of standard exceptions. This is because when EXCEPTION_TYPE is std::exception having an additional catch clause for std::exception would cause a compilation error. So the implementation has two catch clauses: one for the type given and one for all other exceptions (using the ellipsis operator).
+
+### AssertLessTimeThan(MAX_DOUBLE_INTERVAL, EXPR) || RequireLessTimeThan(MAX_DOUBLE_INTERVAL, EXPR)
+It establishes the maximum time span required to evaluate EXPR. MAX_DOUBLE_INTERVAL is the maximum time span allowed while EXPR is the expression to be executed. 
+
+### AssertMoreTimeThan(MIN_DOUBLE_INTERVAL, EXPR) || RequireMoreTimeThan(MIN_DOUBLE_INTERVAL, EXPR)
+It establishes the minimum time span required to evaluate EXPR. MIN_DOUBLE_INTERVAL is the minimum time span allowed while EXPR is the expression to be executed. 
 
 ## A working example
 The following is a working example of UnitTest usage to test the fact() and fib() functions.
