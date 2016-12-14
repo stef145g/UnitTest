@@ -224,11 +224,11 @@ It asserts/requires that the given EXPR does not throws any exception. EXPR is t
 
 Notes that actually, the implementation isn't able to distinguish the type of standard exceptions. This is because when EXCEPTION_TYPE is std::exception having an additional catch clause for std::exception would cause a compilation error. So the implementation has two catch clauses: one for the type given and one for all other exceptions (using the ellipsis operator).
 
-### AssertLessTimeThan(MAX_DOUBLE_INTERVAL, EXPR) || RequireLessTimeThan(MAX_DOUBLE_INTERVAL, EXPR)
-It establishes the maximum time span required to evaluate EXPR. MAX_DOUBLE_INTERVAL is the maximum time span allowed while EXPR is the expression to be executed. 
+### AssertLessTimeThan(MAX_INTERVAL, EXPR) || RequireLessTimeThan(MAX_INTERVAL, EXPR)
+It establishes the maximum time span required to evaluate EXPR. MAX_INTERVAL is the maximum time span allowed while EXPR is the expression to be executed. 
 
-### AssertMoreTimeThan(MIN_DOUBLE_INTERVAL, EXPR) || RequireMoreTimeThan(MIN_DOUBLE_INTERVAL, EXPR)
-It establishes the minimum time span required to evaluate EXPR. MIN_DOUBLE_INTERVAL is the minimum time span allowed while EXPR is the expression to be executed. 
+### AssertMoreTimeThan(MIN_INTERVAL, EXPR) || RequireMoreTimeThan(MIN_INTERVAL, EXPR)
+It establishes the minimum time span required to evaluate EXPR. MIN_INTERVAL is the minimum time span allowed while EXPR is the expression to be executed. 
 
 ## A working example
 The following is a working example of UnitTest usage to test the fact() and fib() functions.
