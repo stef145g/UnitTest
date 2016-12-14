@@ -223,7 +223,8 @@ UT_TEST_SUITE(test_fact) {
 		result = std::numeric_limits<unsigned>::max(); // Here you can access variables at suite scope
 	};
 
-  // Each case must have a name (a valid identifier) and zero or more tags: notes that after the name a comma is always required!
+  // Each case must have a name (a valid identifier) and zero or more tags: 
+	// notes that after the name a comma is always required!
 	UT_TEST_CASE(fact_of_zero_or_one_is_one, base){
 	
 		// Inside test cases you should use AssertXXX or RequireXXX macros to test your code
@@ -280,10 +281,17 @@ int main(int argc, char **argv, char **envp) {
    UT_REGISTER_TEST_SUITE(test_fact);
    UT_REGISTER_TEST_SUITE(test_fib);
 
-   // You can execute only one or more suite by giving --suites <suite 1> [suite 2] [suite n] in the command line
-   // You can execute only one or more test cases tagged by giving --tags <tag 1> [tag 2] [tag n] in the command line
+   // You can execute only one or more suite by giving 
+	 // --suites <suite 1> [suite 2] [suite n] 
+	 // on the command line
+	 
+   // You can execute only one or more test cases tagged by giving
+	 // --tags <tag 1> [tag 2] [tag n] 
+	 // on the command line
+	 
    UnitTest::TestManager::run(argc, argv);
 
    return 0;
 }
 ```
+Thanks for your interest!
