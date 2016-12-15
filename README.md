@@ -219,7 +219,7 @@ It asserts/requires that EXPR throws an exception of the given EXCEPTION_TYPE. E
 
 Notes that actually, the implementation isn't able to distinguish the type of standard exceptions. This is because when EXCEPTION_TYPE is std::exception having an additional catch clause for std::exception would cause a compilation error. So the implementation has two catch clauses: one for the type given and one for all other exceptions (using the ellipsis operator).
 
-### AssertNoThrows(EXPR) || RequireNoThrows(EXPR)
+#### AssertNoThrows(EXPR) || RequireNoThrows(EXPR)
 It asserts/requires that the given EXPR does not throws any exception. EXPR is the expression that is supposed to not throw any exception.
 
 Notes that actually, the implementation isn't able to distinguish the type of standard exceptions. This is because when EXCEPTION_TYPE is std::exception having an additional catch clause for std::exception would cause a compilation error. So the implementation has two catch clauses: one for the type given and one for all other exceptions (using the ellipsis operator).
