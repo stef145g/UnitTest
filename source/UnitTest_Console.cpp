@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include "UnitTest_Console.hpp"
 
-#if defined(__linux__) || defined(__unix__)
+#if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
 
 #define COLOR(X) #X
 
