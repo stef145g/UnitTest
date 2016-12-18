@@ -29,7 +29,7 @@ DEALINGS IN THE SOFTWARE.
 #ifndef _UNIT_TEST_CONSOLE_HPP_
 #define _UNIT_TEST_CONSOLE_HPP_
 
-#if defined(__linux__) || defined(__unix__)
+#if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
 
 #define COLOR(X) #X
 
