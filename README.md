@@ -240,7 +240,7 @@ The following is a working example of UnitTest usage to test the fact() and fib(
 
 // This are supposed to be the units under test
 unsigned fact(unsigned n){ return (n == 0 || n == 1) ? 1 : n*fact(n - 1); }
-unsigned fib(unsigned n){ return (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); }
+unsigned fib(unsigned n){ return (n <= 2) ? (n == 0) ? 0: 1 : fib(n - 1) + fib(n - 2); }
 
 // This is how you define a suite of test cases
 UT_TEST_SUITE(test_fact) {
@@ -294,17 +294,17 @@ UT_TEST_SUITE(test_fib){
 		AssertEquals(1, fib(1));
 	};
 
-	UT_TEST_CASE(fib_of_zero_gives_one, base){
-		AssertTrue(fib(0) == 1);
+	UT_TEST_CASE(fib_of_zero_gives_zero, base){
+		AssertTrue(fib(0) == 0);
 	};
 
 	UT_TEST_CASE(fib_of_five_is_correct, compute){
-		AssertEquals(fib(5), 8);
+		AssertEquals(fib(5), 5);
 	};
 
 	UT_ENABLE_TEST_CASES(
 		fib_of_one_gives_one,
-		fib_of_zero_gives_one,
+		fib_of_zero_gives_zero,
 		fib_of_five_is_correct
 	);
 }
